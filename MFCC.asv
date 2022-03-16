@@ -1,3 +1,4 @@
+clear
 [Speaker3,Fs] = audioread("Training_Data/s3.wav");
 Speaker3_crop = norm_crop(Speaker3,0.05);
 
@@ -20,7 +21,7 @@ plot(Speaker10_crop)
 [codebook10, clusterID, D] = LBG(a10, 4, 0.01);
 figure
 plot(a3(:,4),a3(:,7),'.',a10(:,4),a10(:,7),'.',codebook3(:,4),codebook3(:,7),'o',codebook10(:,4),codebook10(:,7),'o')
-function cepstrum = MFCC1(Num_Bank,K,M,SpeakerSound,Fs)
+function cepstrum = MFCC1(Num_Bank,K,M,SpeakerSound,Fs) %k is size of window 
     win = hamming(K,'periodic');
 %     numOfFrame = floor((length(Speaker)-Num_of_sample)/100);
 %     mel_scale_spectrum = zeros(floor((length(Speaker)-Num_of_sample)/100),Num_Bank);
@@ -52,9 +53,7 @@ function croped_norm_sound = norm_crop(sound,cutoff)
     sound = sound./max(sound);
     croped_norm_sound = sound(abs(sound)>cutoff);
 end
-function denoisedSound = denoise(sound,cutoff)
-    fi
-end
+
 % for i = 1:size(power,2)
 %         frame = Speaker(i*M+1:i*M+Num_of_sample)';
 %         frame = frame.*Window';
