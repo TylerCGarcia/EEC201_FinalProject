@@ -1,0 +1,31 @@
+clear
+[Speaker3,Fs] = audioread("Training_Data/s3.wav");
+Speaker3_crop = norm_crop_sound1(Speaker3,0.0001,128);
+sound(Speaker3,Fs)
+function croped_norm_sound = norm_crop_sound1(sound,cutoff,windowSize)
+    sz = size(sound);
+    if(sz(2) == 2)
+        sound = (sound(:,1)+sound(:,2))/2;
+    end
+    sound = sound./max(sound);
+    startLocation = 1;
+    endLocaton = size(sound,1);
+    %find startPoint
+    for i = 1:floor(size(sound,1)/windowSize)-1
+        power = sum(sound(startLocation:startLocation+windowSize).^2);
+        power = power./windowSize;
+        if power >= cutoff
+            break
+        end
+        startLocation = startLocation + windowSize;
+    end 
+    for i = 1:floor(size(sound,1)/windowSize)-1
+        power = sum(sound(endLocaton-windowSize:endLocaton).^2);
+        power = power./windowSize;
+        if power >= cutoff
+            break
+        end
+        endLocaton = endLocaton - windowSize;
+    end 
+    croped_norm_sound = 
+end
