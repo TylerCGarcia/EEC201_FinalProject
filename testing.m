@@ -30,6 +30,7 @@ end
 
 % Test 3
 function T = Test3(audio3,N3,M3,K3)
+    % iscell(A)
     [Sound,Fs] = audioread(audio3);
     N = N3;
     M = M3;
@@ -45,20 +46,16 @@ function T = Test3(audio3,N3,M3,K3)
     power = s.*conj(s);
    
     power = power./ max(max(abs(power))); % power norm
-    cepstrum = zeros(size(power,2),K);
     for i = 1:size(power,2)
         n2 = 1 + floor(N/2);
         z(i,:) = mel_banks * power(1:n2,i);
-        cepstrum(i,:) = dct(log10(z(i,:)));
-
     end
-    cepstrum = cepstrum./ max(max(abs(cepstrum))); %power norm
     T = power;
     figure(2)
-    imagesc(t,f,power)
+    imagesc(t,f,pow2db(power))
     title('Before Filterbank'),xlabel('Frequency (Hz)')
-    %figure(3)
-    %imagesc(t.*1e3,f.1e3,z)
+    figure(3)
+    imagesc(t.*1e3,f.*1e3,pow2db(z'))
     %title('After Filterbank'),xlabel('Frequency (Hz)')
     
 end
