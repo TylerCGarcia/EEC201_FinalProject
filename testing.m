@@ -57,27 +57,10 @@ function T = Test3(audio3,N3,M3,K3)
     figure(2)
     imagesc(t,f,power)
     title('Before Filterbank'),xlabel('Frequency (Hz)')
-    figure(3)
-    imagesc(t.*1e3,f.1e3,z)
-    title('After Filterbank'),xlabel('Frequency (Hz)')
-    %figure(4)
-    %plot(cepstrum)
-
-    %{
-    for k = 1:K-1
-        sum4(k,1) = sum(mfcc4{:,1}(k,1));
-    end
-    for n = 1:length(mfcc3{1,1})
-        sum3(n,1) = sum(mfcc3{:,1}(n,1));
-    end
-    figure(3)
-    stem(sum3)
-    title('Before Filter Bank'),xlabel('Frequency (Hz)')
-    figure(4)
-    stem(sum4)
-    title('After Filter Bank'),xlabel('Frequency (Hz)')
-    full(m)
-    %}
+    %figure(3)
+    %imagesc(t.*1e3,f.1e3,z)
+    %title('After Filterbank'),xlabel('Frequency (Hz)')
+    
 end
 
 % Test 4 
