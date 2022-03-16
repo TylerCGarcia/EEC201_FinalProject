@@ -18,7 +18,7 @@ function Test2(audio2,N2,M2)
     sz = size(Sound);
     if(sz(2) == 2)
         SpeakerTrain = (Sound(:,1)+Sound(:,2))/2;
-        %SpeakerTrain = (Sound(:,2));
+        %SpeakerTrain = (Sound(:,2)); 
     else
         SpeakerTrain = Sound;
     end
@@ -30,7 +30,7 @@ end
 
 % Test 3
 function T = Test3(audio3,N3,M3,K3)
-    % iscell(A)
+    % iscell(A) to allow cell usage
     [Sound,Fs] = audioread(audio3);
     N = N3;
     M = M3;
