@@ -4,7 +4,7 @@
 The goal of this project is to design a system that can accurately accomplish speaker recognition. It does this using mel-frequency spectrum coefficients and vector quantization with an LGB algorithm. ***Will finish when we have final results
 
 ### Introduction
-This project hopes to consistently identify speakers from one another. Throughout this report, the reasoning and results of the different steps taken to accomplish this are provided. Along with this report are a number of files that are used to accomplish this. To find the Mel-Frequency Cepstrum Coefficients(MFCC), the MFCC.m file is used as a function. Similarly to accomplish vector quantizetion, the LGB.m file is used as a function. For the intermediate steps of test 1 through test 6,  testing.m is used containing a number of functions that apply to each of the tests. For test 7, test7.m can be used. The other matlab files used for this project include loadSound.m and norm_crop_sound.m, which are both used throughout to organize the sound files in the desired fasion.
+This project hopes to consistently identify speakers from one another. Throughout this report, the reasoning and results of the different steps taken to accomplish this are provided. Along with this report are a number of files that are used to accomplish this. To find the Mel-Frequency Cepstrum Coefficients(MFCC), the MFCC.m file is used as a function. Similarly to accomplish vector quantizetion, the LBG.m file is used as a function. For the intermediate steps of test 1 through test 6,  testing.m is used containing a number of functions that apply to each of the tests. For test 7, test7.m can be used. The other matlab files used for this project include loadSound.m and norm_crop_sound.m, which are both used throughout to organize the sound files in the desired fasion.
 
 ### A. Speech Data Files
 The initial step for this project was to get a database of speech files. This database consisted of two folders full of speech files. The first one was initially with 11 speech files, named 'Training_Data' for training the VQ codebook and the second one, named 'Test_Data', initially had 8 speech files for testing the speaker recognition. Between these two folders, speakers 1 through 8 correlated to each other. To set a benchmark for this speaker recognition project, our own ability to match the speakers correctly was tested with an accuracy of 31.25%. 
@@ -38,7 +38,7 @@ For our project each frames consisted of 256 samples, with each following frame 
   <em>Figure 4: Spectogram With Frame Size of 512</em>
 </p>
 
-Once the STFT of a signal is taken, mel-frequency wrapping is applied to the spectrum of the STFT. This is using a mel-spaced filter bank response, which can be seen below in Figure 5. The idea of behind these mel-spaced filter banks is that human perception of sound is only linear for up to around 1000 Hz, after which it follows a more logarithmic spacing scale. The mel-spaced filter banks follow this scaling. Applying this scaling 
+Once the STFT of a signal is taken, mel-frequency wrapping is applied to the spectrum of the STFT. This is using a mel-spaced filter bank response, which can be seen below in Figure 5. The idea of behind these mel-spaced filter banks is that human perception of sound is only linear for up to around 1000 Hz, after which it follows a more logarithmic spacing scale. The mel-spaced filter banks follow this scaling. Applying this scaling gives more of an emphsis on the lower frequency components of the spectrum as can be seen with Figure 6. As can be seen in these figures, the number of filter banks we chose to use was 20, however different numbers of filter banks can also be used to varying effects.
 
 <p align = "center"> 
   <img src = "https://user-images.githubusercontent.com/74210189/158887221-cfed3bc7-c075-4a3f-bdfa-e1b94ed1a700.png" width = 750>
@@ -52,7 +52,38 @@ Once the STFT of a signal is taken, mel-frequency wrapping is applied to the spe
   <em>Figure 6: Mel-Spectrum </em>
 </p>
 
-
+The last step of the MFCC process is converting the spectrum into a cepstrum. This is done by taking the log of the spectrum and then applying the Discrete Cosine Transform(DCT) to it. What this does is converts the spectrum of the data back to the time domain. What is left at the end of this is the Mel-Frequency Cepstrum Coefficients, which represent an array of accoustic vectors that apply to each speaker.
 
 ### C. Vector Quantization
+The accoustic vectors in the MFCC are 20-dimensional and therefore can not be directly observed. However, it is possible to plot two of these dimensions against each other to get an idea of how these vectors are shaped. Figure 7 shows the accoustic vectors for each training set plotted over two dimensions. Figure 8 takes three of these speakers and using the same dimensions, plots them on the same graph. From these plots it can be easily seen that these vectors can look quite different from one speaker to another. 
+
+<p align = "center"> 
+  <img src = "https://user-images.githubusercontent.com/74210189/158907846-2b0ef65b-3d35-4dd2-9295-9840fa72cd45.png" width = 750>
+  <br>
+  <em>Figure 7: All Speakers Plotted Over Two Dimensions </em>
+</p>
+
+<p align = "center"> 
+  <img src = "https://user-images.githubusercontent.com/74210189/158907967-cebb097e-98c6-47c8-b7eb-25eed42ac801.png" width = 750>
+  <br>
+  <em>Figure 8: Speakers 3, 5, and 10 Plotted Against Each Other </em>
+</p>
+
+To take these MFCC's and identify a speaker from them, a method called Vector Quantization(VQ) is used. What this does is map the accoustic vectors from the MFCC's into different regions called clusters. Each centroid for each cluster is called a codeword, and the collection of these codewords make up a codebook for each speaker. To create these codebooks, the Linde-Buzo-Gray(LBG) algorithm is used. For our program we chose to use 8 codewords to make up each codebook, Figure 9 shows how effective this algoirthm is at finding the codeword for each cluser. Figure 10 shows the codebooks for three different speakers plotted against each other in two dimensions. Both of these plots show how different the codebook for each speaker can be.
+
+<p align = "center"> 
+  <img src = "https://user-images.githubusercontent.com/74210189/158909442-fdb9abcb-b882-4876-a0f9-6754f633dc14.png" width = 750>
+  <br>
+  <em>Figure 9: All Speakers Plotted with Codewords </em>
+</p>
+
+<p align = "center"> 
+  <img src = "https://user-images.githubusercontent.com/74210189/158909479-e4bc00c9-ff18-4a67-b55d-d3b8bee1e804.png" width = 750>
+  <br>
+  <em>Figure 10: Codebooks for Speakers 3, 5, and 10 </em>
+</p>
+
+### D. Full Test and Demonstration
+With 
+
 
