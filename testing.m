@@ -42,8 +42,8 @@ Q = 5;
 %Test2(Sound,N,M,Fs);
 %Test3(Sound,N,M,K,Fs);
 %Test4(Sound,N,M,K,Fs);
-Test5(Sound,N,M,K,Fs,d1,d2)
-%Test6(Sound,N,M,K,Fs,d1,d2,e,Q)
+%Test5(Sound,N,M,K,Fs,d1,d2)
+Test6(Sound,N,M,K,Fs,d1,d2,e,Q)
 
 % Test 1
 function T = Test1(Sound,N,M,Fs)
@@ -64,16 +64,20 @@ end
 
 % Test 2
 function Test2(Sound,N,M,Fs)
+%assume the there is always 11 Souns
+
     if(iscell(Sound))
-        for i = 1:length(Sound)
-            for n = 1:length(N)
+        for n = 1:length(N)
+            figure(n)
+            for i = 1:length(Sound)
                 oL = N(n)-M(n);
                 Window = hamming(N(n),'periodic'); 
                 [s,f,t] = stft(Sound{i},Fs,'Window',Window,'OverlapLength',oL,'FFTLength',N(n),'FrequencyRange','onesided');
                 power = s.*conj(s);
                 power = power./ max(max(abs(power))); % power norm
                 %stft(Sound(:,1),Fs,'Window',Window,'OverlapLength',oL,'FFTLength',N(n),'FrequencyRange','onesided');
-                figure((i-1)*length(N) + n)
+                %figure((i-1)*length(N) + n)
+                subplot(3,4,i)
                 imagesc(t,f,pow2db(power))
                 title('STFT s'+string(i)+' N='+string(N(n))+' M='+ string(M(n))),ylabel('Frequency (Hz)'),xlabel('Time (s)')
                 set(gca,'YDir','normal')
@@ -107,8 +111,8 @@ function Test3(Sound,N,M,K,Fs)
     
     % iscell(A) to allow cell usage
     if(iscell(Sound))
-        for n = 1:length(Sound)        
-            
+        figure(1)
+        for n = 1:length(Sound)                  
             [s,f,t] = stft(Sound{n},Fs,'Window',win,'OverlapLength',oL,'FFTLength',N,'FrequencyRange','onesided');
             power = s.*conj(s);
            
@@ -117,11 +121,13 @@ function Test3(Sound,N,M,K,Fs)
                 n2 = 1 + floor(N/2);
                 z(i,:) = m * power(1:n2,i);
             end
-            figure(2*n)
+            %figure(2*n)
+            subplot(6,4,n*2-1)
             imagesc(t,f,pow2db(power))
             title('Before Filterbank s' + string(n)),ylabel('Frequency (Hz)'),xlabel('Time (s)')
             set(gca,'YDir','normal')
-            figure(2*n + 1)
+            %figure(2*n + 1)
+            subplot(6,4,n*2)
             imagesc(t,f,pow2db(z'))
             title('After Filterbank s' + string(n)),ylabel('Frequency (Hz)'),xlabel('Time (s)')
             set(gca,'YDir','normal')
@@ -182,7 +188,10 @@ function Test5(Sound,N,M,K,Fs,d1,d2)
     m = melfb(K, N, Fs);
     oL = N-M;
     Window = hamming(N,'periodic'); 
+    
     if(iscell(Sound))
+        figure(1)
+        hold on
         for j = 1:length(Sound) 
             s = stft(Sound{j},Fs,'Window',Window,'OverlapLength',oL,'FFTLength',N,'FrequencyRange','onesided');
             power = s.*conj(s);
@@ -193,11 +202,13 @@ function Test5(Sound,N,M,K,Fs,d1,d2)
                 z = m * power(1:n2,i);
                 cepstrum{j}(i,:) = dct(log10(z));
             end
-            figure(j)
+            %figure(j)
             plot(cepstrum{j}(:,d1),cepstrum{j}(:,d2),'.')
             title('s'+string(j)+' Dimension '+string(d1)+' vs '+string(d2))
             xlabel('Dimension ' + string(d1)),ylabel('Dimension '+string(d2))
         end
+        hold off
+        title(' Dimension '+string(d1)+' vs '+string(d2))
     else
         s = stft(Sound(:,1),Fs,'Window',Window,'OverlapLength',oL,'FFTLength',N,'FrequencyRange','onesided');
         power = s.*conj(s);
