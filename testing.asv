@@ -10,22 +10,6 @@
 clc,clear
 % Pick sound files
 [Sound,Fs] = loadSound('Training_Data/'); % Use for folder
-[Sound1,Fs] = audioread('Training_Data\s1.wav');
-[Sound2,Fs] = audioread('Training_Data\s6.wav');
-
-figure(1)
-subplot(2,2,1)
-plot(Sound1)
-title('Raw Sound Speaker 1')
-subplot(2,2,2)
-plot(Sound{1})
-title('Normalized Speaker 1')
-subplot(2,2,3)
-plot(Sound2)
-title('Normalized Speaker 6')
-subplot(2,2,4)
-plot(Sound{6})
-title('Normalized Speaker 6')
 
 
 % Test Parameters
@@ -40,46 +24,44 @@ e = 0.01;
 Q = 5;
 
 % For Test 2, N and M can be arrays of desired values
-N = [128 256 512];
-M = [50 100 200];
+%N = [128 256 512];
+%M = [50 100 200];
 
 % Run the tests
 %Test1(Sound,N,M,Fs);
 %Test2(Sound,N,M,Fs);
-%Test3(Sound,N,M,K,Fs);
+Test3(Sound,N,M,K,Fs);
 %Test4(Sound,N,M,K,Fs);
 %Test5(Sound,N,M,K,Fs,d1,d2)
 %Test6(Sound,N,M,K,Fs,d1,d2,e,Q)
-% figure
-% for i = 1:11
-%     subplot(3,4,i)
-%     plot(Sound{i})
-%     sound(Sound{i},Fs)
-% end
+
 % Test 1
 function T = Test1(Sound,N,M,Fs)
+    % First find the overlap
     oL = N-M;
     Window = hamming(N,'periodic'); 
     for i = 1:length(Sound) 
+        % Apply STFT with the given window
         s = stft(Sound{i},Fs,'Window',Window,'OverlapLength',oL,'FFTLength',N,'FrequencyRange','onesided');
+        % Normalize the power
         power{i} = s.*conj(s);
-        T{i} = power{i}./ max(max(abs(power{i}))); % power norm
+        T{i} = power{i}./ max(max(abs(power{i}))); % 
     end
 end
 
 % Test 2
 function Test2(Sound,N,M,Fs)
-%assume the there is always 11 Souns
+% Run iteration for every different window size chosen
     for n = 1:length(N)
         figure(n)
         for i = 1:length(Sound)
+            % Find overlap for that 
             oL = N(n)-M(n);
             Window = hamming(N(n),'periodic'); 
             [s,f,t] = stft(Sound{i},Fs,'Window',Window,'OverlapLength',oL,'FFTLength',N(n),'FrequencyRange','onesided');
+            % Normalize the Power
             power = s.*conj(s);
-            power = power./ max(max(abs(power))); % power norm
-            %stft(Sound(:,1),Fs,'Window',Window,'OverlapLength',oL,'FFTLength',N(n),'FrequencyRange','onesided');
-            %figure((i-1)*length(N) + n)
+            power = power./ max(max(abs(power))); 
             subplot(3,4,i)
             imagesc(t,f,pow2db(power))
             title('STFT s'+string(i)+' N='+string(N(n))+' M='+ string(M(n))),ylabel('Frequency (Hz)'),xlabel('Time (s)')
@@ -97,7 +79,6 @@ function Test3(Sound,N,M,K,Fs)
     plot(linspace(0,Fs/2,length(m)),m)
     title('Mel-spaced filterbank'),xlabel('Frequency (Hz)')
     
-
     figure(2)
     for n = 1:length(Sound)                  
         [s,f,t] = stft(Sound{n},Fs,'Window',win,'OverlapLength',oL,'FFTLength',N,'FrequencyRange','onesided');

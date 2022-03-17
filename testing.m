@@ -37,28 +37,33 @@ Test3(Sound,N,M,K,Fs);
 
 % Test 1
 function T = Test1(Sound,N,M,Fs)
+    % First find the overlap
     oL = N-M;
     Window = hamming(N,'periodic'); 
     for i = 1:length(Sound) 
+        % Apply STFT with the given window
         s = stft(Sound{i},Fs,'Window',Window,'OverlapLength',oL,'FFTLength',N,'FrequencyRange','onesided');
+        % Normalize the power
         power{i} = s.*conj(s);
-        T{i} = power{i}./ max(max(abs(power{i}))); % power norm
+        T{i} = power{i}./ max(max(abs(power{i}))); % 
     end
 end
 
 % Test 2
 function Test2(Sound,N,M,Fs)
-%assume the there is always 11 Souns
+% Run iteration for every different window size chosen
     for n = 1:length(N)
         figure(n)
         for i = 1:length(Sound)
+            % Find overlap for that given frame size
             oL = N(n)-M(n);
             Window = hamming(N(n),'periodic'); 
+            % Compute STFT for that given window
             [s,f,t] = stft(Sound{i},Fs,'Window',Window,'OverlapLength',oL,'FFTLength',N(n),'FrequencyRange','onesided');
+            % Normalize the Power
             power = s.*conj(s);
-            power = power./ max(max(abs(power))); % power norm
-            %stft(Sound(:,1),Fs,'Window',Window,'OverlapLength',oL,'FFTLength',N(n),'FrequencyRange','onesided');
-            %figure((i-1)*length(N) + n)
+            power = power./ max(max(abs(power)));
+            % Plot the spectrograms of the different data
             subplot(3,4,i)
             imagesc(t,f,pow2db(power))
             title('STFT s'+string(i)+' N='+string(N(n))+' M='+ string(M(n))),ylabel('Frequency (Hz)'),xlabel('Time (s)')
