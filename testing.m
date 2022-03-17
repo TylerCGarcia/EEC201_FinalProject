@@ -34,12 +34,7 @@ Test3(Sound,N,M,K,Fs);
 %Test4(Sound,N,M,K,Fs);
 %Test5(Sound,N,M,K,Fs,d1,d2)
 %Test6(Sound,N,M,K,Fs,d1,d2,e,Q)
-% figure
-% for i = 1:11
-%     subplot(3,4,i)
-%     plot(Sound{i})
-%     sound(Sound{i},Fs)
-% end
+
 % Test 1
 function T = Test1(Sound,N,M,Fs)
     oL = N-M;
