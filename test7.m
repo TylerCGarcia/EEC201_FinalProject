@@ -36,9 +36,9 @@ function result = predition(trainingSounds,testingSounds,N,M,K,Fs,Q,distortion_e
 
              [Min,index] = min(distance);
              if(j == 7)
-                 distance
-                 index
-                 min
+                 distance;
+                 index;
+                 %min
              end
              result(j) = mode(index);
         end 
