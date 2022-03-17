@@ -9,6 +9,7 @@ function [sound,constantFs] = loadSound(folder)
         file_name=strcat(folder,'s', num2str(i), '.wav');
         [file, Fs] = audioread(file_name);
         file = resample(file,constantFs,Fs); % resample if it is not in constantFs
+        file = norm_crop_sound(file,0.0005,256);
         sound{i} = file(:,1);   
     end
 end

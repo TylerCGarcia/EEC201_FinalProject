@@ -42,9 +42,13 @@ Q = 5;
 %Test2(Sound,N,M,Fs);
 %Test3(Sound,N,M,K,Fs);
 %Test4(Sound,N,M,K,Fs);
-Test5(Sound,N,M,K,Fs,d1,d2)
+%Test5(Sound,N,M,K,Fs,d1,d2)
 %Test6(Sound,N,M,K,Fs,d1,d2,e,Q)
-
+figure
+for i = 1:11
+    subplot(3,4,i)
+    plot(Sound{i})
+end
 % Test 1
 function T = Test1(Sound,N,M,Fs)
     oL = N-M;
@@ -189,8 +193,9 @@ function Test5(Sound,N,M,K,Fs,d1,d2)
     oL = N-M;
     Window = hamming(N,'periodic'); 
     if(iscell(Sound))
-        figure(1)
+        figure
         for j = 1:length(Sound) 
+            
             s = stft(Sound{j},Fs,'Window',Window,'OverlapLength',oL,'FFTLength',N,'FrequencyRange','onesided');
             power = s.*conj(s);
             power = power./ max(max(abs(power))); % power norm
@@ -205,21 +210,20 @@ function Test5(Sound,N,M,K,Fs,d1,d2)
             title('s'+string(j)+' Dimension '+string(d1)+' vs '+string(d2))
             xlabel('Dimension ' + string(d1)),ylabel('Dimension '+string(d2))
         end
-        figure(2)
+        figure
         hold on
         for j = 1:length(Sound) 
             plot(cepstrum{j}(:,d1),cepstrum{j}(:,d2),'.')
         end
         hold off
         title('Dimension '+string(d1)+' vs '+string(d2) + ' of all sound')
-        title('s'+string(j)+' Dimension '+string(d1)+' vs '+string(d2))
         xlabel('Dimension ' + string(d1)),ylabel('Dimension '+string(d2))
         %plot sound 3 6 10
-        figure(3)
+        figure
         plot(cepstrum{3}(:,d1),cepstrum{3}(:,d2),...
-            '.',cepstrum{5}(:,d1),cepstrum{5}(:,d2),'.',...
-            cepstrum{10}(:,d1),cepstrum{10}(:,d2),'.')
-        title()
+            '.',cepstrum{5}(:,d1),cepstrum{5}(:,d2),'X',...
+            cepstrum{10}(:,d1),cepstrum{10}(:,d2),'o')
+        title('plot for s3 s5 s10')
         xlabel('Dimension ' + string(d1)),ylabel('Dimension '+string(d2))
     else
         s = stft(Sound(:,1),Fs,'Window',Window,'OverlapLength',oL,'FFTLength',N,'FrequencyRange','onesided');
@@ -308,6 +312,12 @@ function Test6(Sound,N,M,K,Fs,d1,d2,e,Q)
             title('Plot of All code book')
         end
         hold off
+        figure
+        plot(codebook{3}(:,d1),codebook{3}(:,d2),...
+            'o',codebook{5}(:,d1),codebook{5}(:,d2),'o',...
+            codebook{10}(:,d1),codebook{10}(:,d2),'o')
+        title('codebook plot for s3 s5 s10')
+        xlabel('Dimension ' + string(d1)),ylabel('Dimension '+string(d2))
     else
         s = stft(Sound(:,1),Fs,'Window',Window,'OverlapLength',oL,'FFTLength',N,'FrequencyRange','onesided');
         power = s.*conj(s);
@@ -359,7 +369,7 @@ function Test6(Sound,N,M,K,Fs,d1,d2,e,Q)
         end
         figure(1)
         plot(cepstrum(:,d1),cepstrum(:,d2),'.',codebook(:,d1),codebook(:,d2),'o')
-        title(' Dimension '+string(d1)+' vs '+string(d2))
+        title(' Dimension '+string(d1)+' vs '+string(d2) +' of all sound')
         xlabel('Dimension ' + string(d1)),ylabel('Dimension '+string(d2))
     end
 end
