@@ -42,7 +42,7 @@ Q = 5;
 %Test2(Sound,N,M,Fs);
 %Test3(Sound,N,M,K,Fs);
 %Test4(Sound,N,M,K,Fs);
-%Test5(Sound,N,M,K,Fs,d1,d2)
+Test5(Sound,N,M,K,Fs,d1,d2)
 %Test6(Sound,N,M,K,Fs,d1,d2,e,Q)
 % figure
 % for i = 1:11
