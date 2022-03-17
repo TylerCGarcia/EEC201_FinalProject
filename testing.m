@@ -26,7 +26,7 @@ clc,clear
 N = 256;
 M = 100;
 K = 20;
-% Dimensions to plot in Test5
+% Dimensions to plot in Test5 nad Test6
 d1 = 3;
 d2 = 4;
 % Distortion error and number of centroids for part 6
@@ -42,8 +42,8 @@ Q = 5;
 %Test2(Sound,N,M,Fs);
 %Test3(Sound,N,M,K,Fs);
 %Test4(Sound,N,M,K,Fs);
-%Test5(Sound,N,M,K,Fs,d1,d2)
-Test6(Sound,N,M,K,Fs,d1,d2,e,Q)
+Test5(Sound,N,M,K,Fs,d1,d2)
+%Test6(Sound,N,M,K,Fs,d1,d2,e,Q)
 
 % Test 1
 function T = Test1(Sound,N,M,Fs)
@@ -194,7 +194,7 @@ function Test5(Sound,N,M,K,Fs,d1,d2)
                 cepstrum{j}(i,:) = dct(log10(z));
             end
             figure(j)
-            scatter(cepstrum{j}(:,d1),cepstrum{j}(:,d2))
+            plot(cepstrum{j}(:,d1),cepstrum{j}(:,d2),'.')
             title('s'+string(j)+' Dimension '+string(d1)+' vs '+string(d2))
             xlabel('Dimension ' + string(d1)),ylabel('Dimension '+string(d2))
         end
@@ -209,7 +209,7 @@ function Test5(Sound,N,M,K,Fs,d1,d2)
             cepstrum(i,:) = dct(log10(z));
         end
         figure(1)
-        scatter(cepstrum(:,d1),cepstrum(:,d2))
+        plot(cepstrum(:,d1),cepstrum(:,d2),'.')
         title(' Dimension '+string(d1)+' vs '+string(d2))
         xlabel('Dimension ' + string(d1)),ylabel('Dimension '+string(d2))
     end
