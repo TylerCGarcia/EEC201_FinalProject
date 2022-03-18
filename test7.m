@@ -10,8 +10,8 @@ e = 0.01;
 % [trainingSound,Fs1] = loadSound('eight/training/'); % Use for folder
 % [testingSound,Fs2] = loadSound('eight/testing/'); % Use for folder
 % result = predition(trainingSound,testingSound,N,M,K,Fs2,Q,e);
-%Test7();
-Test8();
+Test7();
+%Test8();
 function T = Test7()
     N = 256;
     M = 100;
@@ -99,6 +99,7 @@ function T = Test8()
     xlabel('Bandwidth in HZ'),ylabel('Accracy')
 end
 
+
 function result = predition(trainingSounds,testingSounds,N,M,K,Fs,Q,distortion_eps)
     codebook = generateCodebook(trainingSounds,N,M,K,Fs,Q,distortion_eps);
     result = predictUsingCodebook(codebook,testingSounds,N,M,K,Fs,Q,distortion_eps);
@@ -134,7 +135,7 @@ function result = predictUsingCodebook(codebook,testingSounds,N,M,K,Fs,Q,distort
             end
 %             plot(codebookTest{j}(:,3),codebookTest{j}(:,4),'*')
 %             hold off
-            
+
              [Min,index] = min(distance);
              result(j) = mode(index);
 %              if j==10
@@ -142,6 +143,7 @@ function result = predictUsingCodebook(codebook,testingSounds,N,M,K,Fs,Q,distort
 %                 Min
 %                 index
 %              end
+             result(j) = mode(index);
         end 
     end
 end

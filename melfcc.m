@@ -39,5 +39,23 @@ end
 mfcc = frame5;
 mfcc4 = frame4;
 mfcc3 = frame3;
+%{
+[Sound,Fs] = loadSound('Training_Data/'); % Use for folder
+[Sound1,Fs] = audioread('Training_Data\s1.wav');
+[Sound2,Fs] = audioread('Training_Data\s6.wav');
 
+figure(1)
+subplot(2,2,1)
+plot(Sound1)
+title('Raw Sound Speaker 1')
+subplot(2,2,2)
+plot(Sound{1})
+title('Normalized and Cropped Speaker 1')
+subplot(2,2,3)
+plot(Sound2)
+title('Normalized Speaker 6')
+subplot(2,2,4)
+plot(Sound{6})
+title('Normalized and Cropped Speaker 6')
+%}
 
