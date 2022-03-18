@@ -10,8 +10,22 @@ e = 0.01;
 % [trainingSound,Fs1] = loadSound('eight/training/'); % Use for folder
 % [testingSound,Fs2] = loadSound('eight/testing/'); % Use for folder
 % result = predition(trainingSound,testingSound,N,M,K,Fs2,Q,e);
-Test7();
+Test9();
 %Test8();
+function T = Test9()
+%S8 in traning is replaced with sound of Tyler
+%S13 is replaced with Lambert's roomate's sound
+    N = 256;
+    M = 100;
+    K = 20;
+    Q = 8;
+    e = 0.01;
+    [trainingSound,Fs1] = loadSound('Training_Data_Test9/'); % Use for folder
+    [testingSound,Fs2] = loadSound('Test_Data_Test9/'); % Use for folder
+    GT = csvread('Test_Data_test9/GT.txt');
+    result = predition(trainingSound,testingSound,N,M,K,Fs2,Q,e);
+    disp(['The accarcy for replaced 8 + 2 addition test samples is ', num2str(mean(result==GT(:,2)))])
+end
 function T = Test7()
     N = 256;
     M = 100;
