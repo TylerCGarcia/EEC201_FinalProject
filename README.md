@@ -64,7 +64,7 @@ Once the STFT of a signal is taken, mel-frequency wrapping is applied to the spe
   <em>Figure 6: Mel-Spectrum </em>
 </p>
 
-The last step of the MFCC process is converting the spectrum into a cepstrum. This is done by taking the log of the spectrum and then applying the Discrete Cosine Transform(DCT) to it. What this does is converts the spectrum of the data back to the time domain. What is left at the end of this is the Mel-Frequency Cepstrum Coefficients, which represent an array of accoustic vectors that apply to each speaker.
+The last step of the MFCC process is converting the spectrum into a cepstrum. This is done by taking the log of the spectrum and then applying the Discrete Cosine Transform(DCT) to it. What this does is converts the spectrum of the data back to the time domain. What is left at the end of this is the Mel-Frequency Cepstrum Coefficients, which represent an array of accoustic vectors that apply to each speaker. This procedure completes test 4 and finishes up MFCC.m.
 
 ### C. Vector Quantization (Test 5, Test6)
 The accoustic vectors in the MFCC are 20-dimensional and therefore can not be directly observed. However, it is possible to plot two of these dimensions against each other to get an idea of how these vectors are shaped. Figure 7 shows the accoustic vectors for each training set plotted over two dimensions. Figure 8 takes three of these speakers and using the same dimensions, plots them on the same graph. From these plots it can be easily seen that these vectors can look quite different from one speaker to another. 
@@ -107,7 +107,7 @@ To take these MFCC's and identify a speaker from them, a method called Vector Qu
 With the MFCC procedure and LBG algorithm discussed previously it is possible to train the dataset by creating a codebook for each of the initial 11 sound files in the training folder. Then the codebooks for the 8 testing sound files are found. For each test speaker, the total VQ distortion is found between them and the 11 training codebooks. The training codebook that generates the smallest distortion with that speaker is then identified as that speaker. Using this method with the initial 11 trainings files and 8 test files, our program was able to find 6 of the test speakers correctly, giving it an accuracy of 75%. The program is then run again after two new speakers each add a test and training sound file. With the addition of these two new speakers, the accuracy of the systems falls 70% with 7 out of the 10 test speakers being identified from the now 13 training files.
 
 
-Following these tests the robustness of our system is tested using a notch filter. A notch filter is a type of filter with a narrow stopband that removes certain frequencies from the spectrum. This filter is applied to all the 
+Following these tests the robustness of our system is tested using a notch filter. A notch filter is a type of filter with a narrow stopband that removes certain frequencies from the spectrum. This filter is applied to all the all 
 
 ### Results and Conclusion
 
