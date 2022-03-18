@@ -64,7 +64,13 @@ Once the STFT of a signal is taken, mel-frequency wrapping is applied to the spe
   <em>Figure 6: Mel-Spectrum </em>
 </p>
 
-The last step of the MFCC process is converting the spectrum into a cepstrum. This is done by taking the log of the spectrum and then applying the Discrete Cosine Transform(DCT) to it. What this does is converts the spectrum of the data back to the time domain. What is left at the end of this is the Mel-Frequency Cepstrum Coefficients, which represent an array of accoustic vectors that apply to each speaker. This procedure completes test 4 and finishes up MFCC.m.
+The last step of the MFCC process is converting the spectrum into a cepstrum. This is done by taking the log of the spectrum and then applying the Discrete Cosine Transform(DCT) to it. What this does is converts the spectrum of the data back to the time domain. What is left at the end of this is the Mel-Frequency Cepstrum Coefficients, which represent an array of accoustic vectors that apply to each speaker. 
+
+<p align = "center"> 
+  <br>
+  <b>This procedure completes test 4 and finishes up MFCC.m.</b>
+  <br>
+</p>
 
 ### C. Vector Quantization (Test 5, Test6)
 The accoustic vectors in the MFCC are 20-dimensional and therefore can not be directly observed. However, it is possible to plot two of these dimensions against each other to get an idea of how these vectors are shaped. Figure 7 shows the accoustic vectors for each training set plotted over two dimensions. Figure 8 takes three of these speakers and using the same dimensions, plots them on the same graph. From these plots it can be easily seen that these vectors can look quite different from one speaker to another. 
