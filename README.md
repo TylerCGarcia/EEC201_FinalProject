@@ -68,7 +68,7 @@ The last step of the MFCC process is converting the spectrum into a cepstrum. Th
 
 <p align = "center"> 
   <br>
-  <b>This procedure completes test 4 and finishes up MFCC.m.</b>
+  <b>This procedure completes TEST 4 and finishes up MFCC.m.</b>
   <br>
 </p>
 
@@ -110,10 +110,25 @@ To take these MFCC's and identify a speaker from them, a method called Vector Qu
 </p>
 
 ### D. Full Test and Demonstration (Test 7, Test 8, Test 9, Test 10)
-With the MFCC procedure and LBG algorithm discussed previously it is possible to train the dataset by creating a codebook for each of the initial 11 sound files in the training folder. Then the codebooks for the 8 testing sound files are found. For each test speaker, the total VQ distortion is found between them and the 11 training codebooks. The training codebook that generates the smallest distortion with that speaker is then identified as that speaker. Using this method with the initial 11 trainings files and 8 test files, our program was able to find 6 of the test speakers correctly, giving it an accuracy of 75%. The program is then run again after two new speakers each add a test and training sound file. With the addition of these two new speakers, the accuracy of the systems falls 70% with 7 out of the 10 test speakers being identified from the now 13 training files.
+With the MFCC procedure and LBG algorithm discussed previously it is possible to train the dataset by creating a codebook for each of the initial 11 sound files in the training folder. Then the codebooks for the 8 testing sound files are found. For each test speaker, the total VQ distortion is found between them and the 11 training codebooks. The training codebook that generates the smallest distortion with that speaker is then identified as that speaker. Using this method with the initial 11 trainings files and 8 test files, our program was able to find 6 of the test speakers correctly, giving it an accuracy of 75%. The program is then run again after two new speakers each add a test and training sound file. With the addition of these two new speakers, the accuracy of the systems falls 70% with 7 out of the 10 test speakers being identified from the now 13 training files. These accuracies give the results for TEST 7.
 
 
-Following these tests the robustness of our system is tested using a notch filter. A notch filter is a type of filter with a narrow stopband that removes certain frequencies from the spectrum. This filter is applied to all the all 
+Following these tests the robustness of our system is tested using a notch filter. A notch filter is a type of filter with a narrow stopband that removes certain frequencies from the spectrum. This filter is applied to all of the sound files and the system is tested using the previous procedure. The resulting accuracy is shown below in Figure 11. For this, a notch filter with with varying stopband bandwidths is found for four different center frequencies. The results show that the accuracy for the system stays high even with a loss in certain frequency ranges. The accuracy does go down with a large enough stop band however, it has to remove a large portion of the frequency range for that to happen. This means that the system is quite robust.
+
+<p align = "center"> 
+  <b>TEST 8</b>
+  <br>
+  <img src = "https://user-images.githubusercontent.com/74210189/158918411-696a1e55-aebf-4df1-8254-ade6e337e0bc.png" width = 750>
+  <br>
+  <em>Figure 11: Accuracy with Notch Filter Added
+  </em>
+</p>
+
+The next test, TEST 9, takes the 13 training files and 10 test files of TEST 7, then replaces two of the speakers with two new speaker. This leaves the total number of speakers the same. The outcome of runing the test on these training and test files gives an accuracy of 80%, which is 8 out of the 10 test speakers identified correctly. This accuracy is higher than that of TEST 7, however around the same range, only guessing one more speaker correctly. 
+
+
+
+The last test, TEST 10, involves using new sound files where a different phrase is said. Up until now, all of the sound files have said the word 'zero'. For TEST 10, the new sound files say the word 'eight'. 
 
 ### Results and Conclusion
 
