@@ -23,13 +23,13 @@ For our project each frames consisted of 256 samples, with each following frame 
 <p align = "center"> 
   <img src = "https://user-images.githubusercontent.com/74210189/158883488-451b46c2-1ee2-4c2f-a341-7d387c71e6cb.png" width = 750>
   <br>
-  <em>Figure 2: Spectogram With Frame Size of 256 (Test 2)</em>
+  <em>(Test 2) Figure 2: Spectogram With Frame Size of 256 </em>
 </p>
 
 <p align = "center"> 
   <img src = "https://user-images.githubusercontent.com/74210189/158883633-2e381940-eb55-4867-8196-2973c9c19fa0.png" width = 750>
   <br>
-  <em>Figure 3: Spectogram With Frame Size of 128 (Test 2)</em>
+  <em>(Test 2) Figure 3: Spectogram With Frame Size of 128 </em>
 </p>
 
 <p align = "center"> 
