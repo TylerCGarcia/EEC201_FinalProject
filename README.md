@@ -1,7 +1,7 @@
 # EEC201_FinalProject
 ##### The A- Team: Tyler Garcia, Lambert Lihe
 ### Abstract
-The goal of this project is to design a system that can accurately accomplish speaker recognition. It does this using mel-frequency spectrum coefficients and vector quantization with an LGB algorithm. ***Will finish when we have final results
+The goal of this project is to design a system that can accurately accomplish speaker recognition. It does this using mel-frequency cepstrum coefficients and vector quantization with an LGB algorithm. To obtain the mel-frequency cepstrum coefficients, our program uses a frame size of 256 samples, with each following frame beginning 100 samples after. A hamming window is used with this frame size and following the fast fourier transform, a mel-spaced filter bank conisting of 20 filter banks was used. After the dct of the logged spectrum was found, the accoustic vectors were broken into 8 regions with 8 unique codewords, found with the LBG algorithm. Finding the distorition between the codebooks of the training set and the test set, our program could accurately determine the correct speaker 75% of the time, which is significantly higher than what was found as the human perception's recognition rate.  
 
 ### Introduction
 This project hopes to consistently identify speakers from one another. Throughout this report, the reasoning and results of the different steps taken to accomplish this are provided. Along with this report are a number of files that are used to accomplish this. To find the Mel-Frequency Cepstrum Coefficients(MFCC), the MFCC.m file is used as a function. Similarly to accomplish vector quantizetion, the LBG.m file is used as a function. For the intermediate steps of test 1 through test 6,  testing.m is used containing a number of functions that apply to each of the tests. For test 7, test7.m can be used. The other matlab files used for this project include loadSound.m and norm_crop_sound.m, which are both used throughout to organize the sound files in the desired fasion.
@@ -84,6 +84,11 @@ To take these MFCC's and identify a speaker from them, a method called Vector Qu
 </p>
 
 ### D. Full Test and Demonstration
-With 
+With the MFCC procedure and LBG algorithm discussed previously it is possible to train the dataset by creating a codebook for each of the initial 11 sound files in the training folder. Then the codebooks for the 8 testing sound files are found. For each test speaker, the total VQ distortion is found between them and the 11 training codebooks. The training codebook that generates the smallest distortion with that speaker is then identified as that speaker. Using this method with the initial 11 trainings files and 8 test files, our program was able to find 6 of the test speakers correctly, giving it an accuracy of 75%. The program is then run again after two new speakers each add a test and training sound file. With the addition of these two new speakers, the accuracy of the systems falls 70% with 7 out of the 10 test speakers being identified from the now 13 training files.
+
+
+
+
+### Results and Conclusion
 
 
