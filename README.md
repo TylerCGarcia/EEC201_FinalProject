@@ -6,10 +6,10 @@ The goal of this project is to design a system that can accurately accomplish sp
 ### Introduction
 This project hopes to consistently identify speakers from one another. Throughout this report, the reasoning and results of the different steps taken to accomplish this are provided. Along with this report are a number of files that are used to accomplish this. To find the Mel-Frequency Cepstrum Coefficients(MFCC), the MFCC.m file is used as a function. Similarly to accomplish vector quantizetion, the LBG.m file is used as a function. To try out each test individually, testing.m is used containing a number of functions that apply to each of the tests. The other matlab files used for this project include loadSound.m and norm_crop_sound.m, which are both used throughout to organize the sound files in the desired fasion.
 
-### A. Speech Data Files
+### A. Speech Data Files (Test 1)
 The initial step for this project was to get a database of speech files. This database consisted of two folders full of speech files. The first one was initially with 11 speech files, named 'Training_Data' for training the VQ codebook and the second one, named 'Test_Data', initially had 8 speech files for testing the speaker recognition. Between these two folders, speakers 1 through 8 correlated to each other. To set a benchmark for this speaker recognition project, our own ability to match the speakers correctly was tested with an accuracy of 31.25%. 
 
-### B. Speech Preprocessing
+### B. Speech Preprocessing (Test 1, Test 2, Test 3, Test 4)
 To be able to correctly identify a speaker, first you must extract features to compare the speakers. Since speech is mostly stationary over periods of time less than around 100 msec, Short-Time Fourier Transform(STFT) can be used to extract speech characteristics that are mostly stationary. STFT is done by breaking the sound file into overlapping frames, applying a window to those frames, then taking the Fast Fourier Transform(FFT) of the windowed frames. The purpose of windowing is to reduce spectral leakage and the distortion caused by it. However, before this could be done, the sounds is first normalized and cropped to put more emphasis on the part of speech with the key characteristics. This cropping is done by removing all of the sound on either end of the sound file that falls below a certain power threshold. The raw sound file is plotted below in Figure 1, along with the normalized and cropped version of that sound file. As can be seen this operation makes a large difference and signficantly improves the functionality of this speaker recognition project.
 
 <p align = "center"> 
@@ -23,13 +23,13 @@ For our project each frames consisted of 256 samples, with each following frame 
 <p align = "center"> 
   <img src = "https://user-images.githubusercontent.com/74210189/158883488-451b46c2-1ee2-4c2f-a341-7d387c71e6cb.png" width = 750>
   <br>
-  <em>Figure 2: Spectogram With Frame Size of 256</em>
+  <em>Figure 2: Spectogram With Frame Size of 256 (Test 2)</em>
 </p>
 
 <p align = "center"> 
   <img src = "https://user-images.githubusercontent.com/74210189/158883633-2e381940-eb55-4867-8196-2973c9c19fa0.png" width = 750>
   <br>
-  <em>Figure 3: Spectogram With Frame Size of 128</em>
+  <em>Figure 3: Spectogram With Frame Size of 128 (Test 2)</em>
 </p>
 
 <p align = "center"> 
