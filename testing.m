@@ -21,7 +21,7 @@ d1 = 3;
 d2 = 4;
 % Distortion error and number of centroids for part 6
 e = 0.01;
-Q = 5;
+Q = 8;
 
 % For Test 2, N and M can be arrays of desired values
 %N = [128 256 512];
@@ -30,10 +30,10 @@ Q = 5;
 % Run the tests
 %Test1(Sound,N,M,Fs);
 %Test2(Sound,N,M,Fs);
-Test3(Sound,N,M,K,Fs);
+%Test3(Sound,N,M,K,Fs);
 %Test4(Sound,N,M,K,Fs);
 %Test5(Sound,N,M,K,Fs,d1,d2)
-%Test6(Sound,N,M,K,Fs,d1,d2,e,Q)
+Test6(Sound,N,M,K,Fs,d1,d2,e,Q)
 
 % Test 1
 function T = Test1(Sound,N,M,Fs)
