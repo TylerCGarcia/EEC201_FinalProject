@@ -1,7 +1,7 @@
 # EEC201_FinalProject
 ##### The A- Team: Tyler Garcia, Lambert Lihe
 ### Abstract
-The goal of this project is to design a system that can accurately accomplish speaker recognition. It does this using mel-frequency cepstrum coefficients and vector quantization with an LGB algorithm. To obtain the mel-frequency cepstrum coefficients, our program uses a frame size of 256 samples, with each following frame beginning 100 samples after. A hamming window is used with this frame size and following the fast fourier transform, a mel-spaced filter bank conisting of 20 filter banks was used. After the dct of the logged spectrum was found, the accoustic vectors were broken into 8 regions with 8 unique codewords, found with the LBG algorithm. Finding the distorition between the codebooks of the training set and the test set, our program could accurately determine the correct speaker 75% of the time, which is significantly higher than what was found as the human perception's recognition rate.  
+The goal of this project is to design a system that can accurately accomplish speaker recognition. It does this using mel-frequency cepstrum coefficients and vector quantization with an LGB algorithm. To obtain the mel-frequency cepstrum coefficients, our program uses a frame size of 256 samples, with each following frame beginning 100 samples after. A hamming window is used with this frame size and following the fast fourier transform, a mel-spaced filter bank conisting of 20 filter banks was used. After the dct of the logged spectrum was found, the accoustic vectors were broken into 8 regions with 8 unique codewords, found with the LBG algorithm. Finding the distorition between the codebook of the training set and each test file, our program could accurately determine the correct speaker 75% of the time, which is significantly higher than what was found as the human perception's recognition rate.  
 
 ### Introduction
 This project hopes to consistently identify speakers from one another. Throughout this report, the reasoning and results of the different steps taken to accomplish this are provided. Along with this report are a number of files that are used to accomplish this. To find the Mel-Frequency Cepstrum Coefficients(MFCC), the MFCC.m file is used as a function. Similarly to accomplish vector quantizetion, the LBG.m file is used as a function. generateCodebook.m is used to create a codebook of the training files, predictUsingCodebook.m uses that codebook to find the best fit for the speaker, and prediction.m uses these two functions with whatever the chosen soundfiles are. To try out each test for this project individually, testing.m is used containing a number of functions that apply to each of the tests. Figure 1 below shows part of testing.m where all of the tests are called. To call each individually uncomment the desired test. The other matlab files used for this project include loadSound.m and norm_crop_sound.m, which are both used throughout to organize the sound files in the desired fasion.
@@ -116,8 +116,20 @@ To take these MFCC's and identify a speaker from them, a method called Vector Qu
 </p>
 
 ### D. Full Test and Demonstration (Test 7, Test 8, Test 9, Test 10)
+
+<p align = "left"> 
+  <br>
+  <b>TEST 7</b>
+  <br>
+</p>
+
 With the MFCC procedure and LBG algorithm discussed previously it is possible to train the dataset by creating a codebook for each of the initial 11 sound files in the training folder. Then the codebooks for the 8 testing sound files are found. For each test speaker, the total VQ distortion is found between them and the 11 training codebooks. The training codebook that generates the smallest distortion with that speaker is then identified as that speaker. Using this method with the initial 11 trainings files and 8 test files, our program was able to find 6 of the test speakers correctly, giving it an accuracy of 75%. The program is then run again after two new speakers each add a test and training sound file. With the addition of these two new speakers, the accuracy of the systems falls 70% with 7 out of the 10 test speakers being identified from the now 13 training files. These accuracies give the results for TEST 7.
 
+<p align = "left"> 
+  <br>
+  <b>TEST 8</b>
+  <br>
+</p>
 
 Following these tests the robustness of our system is tested using a notch filter. A notch filter is a type of filter with a narrow stopband that removes certain frequencies from the spectrum. This filter is applied to all of the initial sound files and the system is tested using the previous procedure. The resulting accuracy is shown below in Figure 12. For this, a notch filter with with varying stopband bandwidths is found for four different center frequencies. The results show that the accuracy for the system stays high even with a loss in certain frequency ranges. The accuracy does go down with a large enough stop band however, it has to remove a large portion of the frequency range for that to happen. This means that the system is quite robust.
 
@@ -130,9 +142,19 @@ Following these tests the robustness of our system is tested using a notch filte
   </em>
 </p>
 
+<p align = "left"> 
+  <br>
+  <b>TEST 9</b>
+  <br>
+</p>
+
 The next test, TEST 9, takes the 13 training files and 10 test files of TEST 7, then replaces two of the speakers with two new speaker. This leaves the total number of speakers the same. The outcome of runing the test on these training and test files gives an accuracy of 80%, which is 8 out of the 10 test speakers identified correctly. This accuracy is higher than that of TEST 7, however around the same range, only guessing one more speaker correctly. 
 
-
+<p align = "left"> 
+  <br>
+  <b>TEST 10 </b>
+  <br>
+</p>
 
 The last test, TEST 10, involves using new sound files where a different phrase is said. Up until now, all of the sound files have said the word 'zero'. For TEST 10, the new sound files say the word 'eight'. This done is for 10 speakers, with 10 files to train a VQ-codebook and 10 sperate test files to test against against that codebook. The result of this test gives an accuracy of 80%, with the program correctly identifying 8 of the 10 speakers correctly.
 
