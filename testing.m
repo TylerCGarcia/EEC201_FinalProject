@@ -128,6 +128,7 @@ end
 
 % Test 4 
 function T = Test4(Sound,N,M,K,Fs) 
+    % find the cepstrum for each sound file in the folder
     for j = 1:length(Sound) 
         cept{j} = MFCC(K,N,M,Sound{j},Fs);
     end
@@ -136,6 +137,7 @@ end
 
 % Test 5
 function Test5(Sound,N,M,K,Fs,d1,d2)
+    % Plot two dimensions of the accoustic vectors against each other
     figure
     for j = 1:length(Sound) 
         cepstrum{j} = MFCC(K,N,M,Sound{j},Fs);
@@ -164,11 +166,11 @@ end
 
 % Test 6
 function Test6(Sound,N,M,K,Fs,d1,d2,e,Q) 
+    % Find the centroid and plot them against the accoustic vectors
     figure
     for j = 1:length(Sound) 
         cepstrum{j} = MFCC(K,N,M,Sound{j},Fs);
         [codebook{j},clusterID,D] = LBG(cepstrum{j},Q,e);
-        %figure(j)
         subplot(3,4,j)
         plot(cepstrum{j}(:,d1),cepstrum{j}(:,d2),'.',codebook{j}(:,d1),codebook{j}(:,d2),'o')
         title('s'+string(j)+' Dimension '+string(d1)+' vs '+string(d2))
@@ -191,13 +193,14 @@ end
 
 % Test 7
 function Test7(trainingSound,testingSound,N,M,K,Fs1,Fs2,e,Q)
-    
+    % Identify the speaker from the initial folder
     GT = csvread('Test_Data/GT.txt');
     result = predition(trainingSound,testingSound,N,M,K,Fs2,Q,e);
     disp('Test7:')
     disp(['The accarcy for orinigal 8 test samples is ', num2str(mean(result==GT(:,2)))])
-    [trainingSound,Fs1] = loadSound('Training_Data_Test7/'); % Use for folder
-    [testingSound,Fs2] = loadSound('Test_Data_Test7/'); % Use for folder
+    % Add two new speakers and identify the speaker
+    [trainingSound,Fs1] = loadSound('Training_Data_Test7/');
+    [testingSound,Fs2] = loadSound('Test_Data_Test7/');
     GT = csvread('Test_Data_test7/GT.txt');
     result = predition(trainingSound,testingSound,N,M,K,Fs2,Q,e);
     disp(['The accarcy for orinigal 8 + 2 addition test samples is ', num2str(mean(result==GT(:,2)))])
@@ -205,10 +208,11 @@ end
 
 % Test 8
 function Test8(trainingSound,testingSound,N,M,K,Fs1,Fs2,e,Q)
-    %this function will run about 1 to 4 mins depanding on machine used
-    
+    % This function will run about 1 to 4 mins depanding on machine used
+    % Create the codebook from the training folder
     codebook = generateCodebook(trainingSound,N,M,K,Fs1,Q,e);
     figure
+    % Change bandwidth and test affectiveness
     for k= 2:2:200
         wo = 100/(Fs1/2);  
         bw = k/(Fs1/2);
