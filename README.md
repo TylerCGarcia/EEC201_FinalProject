@@ -15,19 +15,18 @@ This project hopes to consistently identify speakers from one another. Throughou
 ### Function and File Used
 
 #### function codebook = generateCodebook(trainingSounds,N,M,K,Fs,Q,distortion_eps)
-This function
 
-# function [codebook, clusterID, D] = LBG(X, K, distortion_eps)
+#### function [codebook, clusterID, D] = LBG(X, K, distortion_eps)
 
-# function [sound,constantFs] = loadSound(folder)
+#### function [sound,constantFs] = loadSound(folder)
 
-# function cepstrum = MFCC(Num_Bank,N,M,SpeakerSound,Fs)
+#### function cepstrum = MFCC(Num_Bank,N,M,SpeakerSound,Fs)
 
-# function m = melfb(p, n, fs)
+#### function m = melfb(p, n, fs)
 
-# function croped_norm_sound = norm_crop_sound(sound,cutoff,windowSize)
+#### function croped_norm_sound = norm_crop_sound(sound,cutoff,windowSize)
 
-# function result = predition(trainingSounds,testingSounds,N,M,K,Fs,Q,distortion_eps)
+#### function result = predition(trainingSounds,testingSounds,N,M,K,Fs,Q,distortion_eps)
 
 testing.m
 ### A. Speech Data Files (Test 1)
