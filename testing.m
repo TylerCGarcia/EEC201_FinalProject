@@ -33,19 +33,19 @@ e = 0.01;
 Q = 8;
 
 % For Test 2, N and M can be arrays of desired values
-%N = [128 256 512];
-%M = [50 100 200];
+N2 = [128 256 512];
+M2 = [50 100 200];
 
 % Run the tests here
 % It is recommended to only run one at a time
 %Test1(Sound,N,M,Fs);
-%Test2(Sound,N,M,Fs);
+%Test2(Sound,N2,M2,Fs);
 %Test3(Sound,N,M,K,Fs);
 %Test4(Sound,N,M,K,Fs);
 %Test5(Sound,N,M,K,Fs,d1,d2)
 %Test6(Sound,N,M,K,Fs,d1,d2,e,Q)
 %Test7(Sound,Sound2,N,M,K,Fs,Fs2,e,Q)
-%Test8(Sound,Sound2,N,M,K,Fs,Fs2,e,Q)
+Test8(Sound,Sound2,N,M,K,Fs,Fs2,e,Q)
 %Test9(trainingSound9,testingSound9,N,M,K,Fs91,Fs92,e,Q)
 %Test10(trainingSound10,testingSound10,N,M,K,Fs101,Fs102,e,Q)
 
