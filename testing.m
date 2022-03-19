@@ -38,7 +38,7 @@ M2 = [50 100 200];
 
 % Run the tests here
 % It is recommended to only run one at a time
-%Test1(Sound,N,M,Fs);
+Test1(Sound,Fs);
 %Test2(Sound,N2,M2,Fs);
 %Test3(Sound,N,M,K,Fs);
 %Test4(Sound,N,M,K,Fs);
@@ -50,18 +50,10 @@ M2 = [50 100 200];
 %Test10(trainingSound10,testingSound10,N,M,K,Fs101,Fs102,e,Q)
 
 % Test 1
-function T = Test1(Sound,N,M,Fs)
-    % First find the overlap
-    oL = N-M;
-    % Create a window 
-    Window = hamming(N,'periodic'); 
-    for i = 1:length(Sound) 
-        % Apply STFT with the given window
-        s = stft(Sound{i},Fs,'Window',Window,'OverlapLength',oL,'FFTLength',N,'FrequencyRange','onesided');
-        % Normalize the power
-        power{i} = s.*conj(s);
-        T{i} = power{i}./ max(max(abs(power{i}))); % 
-    end
+function Test1(Sound,Fs)
+    % displays the Sound for test 1
+    sound(Sound{1},Fs)
+    disp(Sound)
 end
 
 % Test 2
