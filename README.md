@@ -12,6 +12,24 @@ This project hopes to consistently identify speakers from one another. Throughou
   <em>Figure 1: Testing.m Usage </em>
 </p>
 
+### Function and File Used
+
+#### function codebook = generateCodebook(trainingSounds,N,M,K,Fs,Q,distortion_eps)
+This function
+
+# function [codebook, clusterID, D] = LBG(X, K, distortion_eps)
+
+# function [sound,constantFs] = loadSound(folder)
+
+# function cepstrum = MFCC(Num_Bank,N,M,SpeakerSound,Fs)
+
+# function m = melfb(p, n, fs)
+
+# function croped_norm_sound = norm_crop_sound(sound,cutoff,windowSize)
+
+# function result = predition(trainingSounds,testingSounds,N,M,K,Fs,Q,distortion_eps)
+
+testing.m
 ### A. Speech Data Files (Test 1)
 The initial step for this project was to get a database of speech files. This database consisted of two folders full of speech files. The first one was initially with 11 speech files, named 'Training_Data' for training the VQ codebook and the second one, named 'Test_Data', initially had 8 speech files for testing the speaker recognition. Between these two folders, speakers 1 through 8 correlated to each other. To set a benchmark for this speaker recognition project, our own ability to match the speakers correctly was tested with an accuracy of 31.25%. 
 
