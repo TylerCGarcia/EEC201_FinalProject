@@ -1,5 +1,6 @@
 # EEC201_FinalProject
 ##### The A- Team: Tyler Garcia, Lambert Lihe
+https://youtu.be/COP3hug4_jA
 ### Abstract
 The goal of this project is to design a system that can accurately accomplish speaker recognition. It does this using mel-frequency cepstrum coefficients and vector quantization with an LGB algorithm. To obtain the mel-frequency cepstrum coefficients, our program uses a frame size of 256 samples, with each following frame beginning 100 samples after. A hamming window is used with this frame size and following the fast fourier transform, a mel-spaced filter bank conisting of 20 filter banks was used. After the dct of the logged spectrum was found, the accoustic vectors were broken into 8 regions with 8 unique codewords, found with the LBG algorithm. Finding the distorition between the codebook of the training set and each test file, our program could accurately determine the correct speaker 75% of the time, which is significantly higher than what was found as the human perception's recognition rate.  
 
