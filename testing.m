@@ -45,7 +45,7 @@ M2 = [50 100 200];
 %Test5(Sound,N,M,K,Fs,d1,d2)
 %Test6(Sound,N,M,K,Fs,d1,d2,e,Q)
 %Test7(Sound,Sound2,N,M,K,Fs,Fs2,e,Q)
-Test8(Sound,Sound2,N,M,K,Fs,Fs2,e,Q)
+%Test8(Sound,Sound2,N,M,K,Fs,Fs2,e,Q)
 %Test9(trainingSound9,testingSound9,N,M,K,Fs91,Fs92,e,Q)
 %Test10(trainingSound10,testingSound10,N,M,K,Fs101,Fs102,e,Q)
 
@@ -68,7 +68,7 @@ end
 function Test2(Sound,N,M,Fs)
 % Run iteration for every different window size chosen
     for n = 1:length(N)
-        figure(n)
+        figure
         for i = 1:length(Sound)
             % Find overlap for that given frame size
             oL = N(n)-M(n);
@@ -95,12 +95,12 @@ function Test3(Sound,N,M,K,Fs)
     oL = N-M;
     win = hamming(N,'periodic');
 
-    figure(1)
+    figure
     plot(linspace(0,Fs/2,length(m)),m)
     title('Mel-spaced filterbank'),xlabel('Frequency (Hz)')
     
     % Plot the spectrum before and after the filterbank is added
-    figure(2)
+    figure
     for n = 1:length(Sound)  
         % Take the short time fourier transform
         [s,f,t] = stft(Sound{n},Fs,'Window',win,'OverlapLength',oL,'FFTLength',N,'FrequencyRange','onesided');
