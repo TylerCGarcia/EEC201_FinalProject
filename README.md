@@ -14,21 +14,23 @@ This project hopes to consistently identify speakers from one another. Throughou
 
 ### Function and File Used
 
-#### function codebook = generateCodebook(trainingSounds,N,M,K,Fs,Q,distortion_eps)
-
-#### function [codebook, clusterID, D] = LBG(X, K, distortion_eps)
-
-#### function [sound,constantFs] = loadSound(folder)
-
-#### function cepstrum = MFCC(Num_Bank,N,M,SpeakerSound,Fs)
-
-#### function m = melfb(p, n, fs)
-
 #### function croped_norm_sound = norm_crop_sound(sound,cutoff,windowSize)
-
+Crop and normoziled sound. Cropping using the a small window to test power of a small period of a signal. So that we can filter out all slience part of the file.
+#### function [sound,constantFs] = loadSound(folder)
+Load all sounds from a folder and put it into 'sound' varible.
+#### function cepstrum = MFCC(Num_Bank,N,M,SpeakerSound,Fs)
+Convert the sound into fetuare.
+#### function [codebook, clusterID, D] = LBG(X, K, distortion_eps)
+Convert data cluster into datapoints.
+#### function codebook = generateCodebook(trainingSounds,N,M,K,Fs,Q,distortion_eps)
+Using LBG generate codebook based on sound.
+#### function result = predictUsingCodebook(codebook,testingSounds,N,M,K,Fs,Q,distortion_eps)
+Make prediction on a set of sounds using provided codebook.
 #### function result = predition(trainingSounds,testingSounds,N,M,K,Fs,Q,distortion_eps)
+Predition by providing traingingSounds and testSounds, and output a result for each testingSounds.
+#### testing.m
+Testing for all test1 to test10
 
-testing.m
 ### A. Speech Data Files (Test 1)
 The initial step for this project was to get a database of speech files. This database consisted of two folders full of speech files. The first one was initially with 11 speech files, named 'Training_Data' for training the VQ codebook and the second one, named 'Test_Data', initially had 8 speech files for testing the speaker recognition. Between these two folders, speakers 1 through 8 correlated to each other. To set a benchmark for this speaker recognition project, our own ability to match the speakers correctly was tested with an accuracy of 31.25%. 
 
